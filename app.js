@@ -16,18 +16,24 @@ function submitHandler() {
 }
 
 function calculateProfitAndLoss(initial, quantity, current) {
-    if (initial > current) {
-        var loss = (initial - current) * quantity;
-        var lossPercentage = (loss/ (initial*quantity))*100;
-        
-        showOutput(`Whoops!! Your loss is ${loss} and loss percentage is ${lossPercentage.toFixed(2)}%`);
-    } else if (current > initial) {
-        var profit = (current - initial) * quantity;
-        var profitPercentage = (profit/(initial*quantity))*100 ;
 
-        showOutput(`Yay!! Your profit is ${profit} and the profit percentage is ${profitPercentage.toFixed(2)}%`);
+    if (initial <= 0 || quantity <= 0 || current <= 0) {
+        outputBox.innerText = `Invalid entry,please enter valid digits`;
     } else {
-        showOutput(`No pain no gain and no gain no pain`);
+        if (initial > current) {
+            var loss = (initial - current) * quantity;
+            var lossPercentage = (loss / initial) * 100;
+
+            showOutput(`Whoops!! Your loss is ${loss} and loss percentage is ${lossPercentage.toFixed(2)}%`);
+        } else if (current > initial) {
+            var profit = (current - initial) * quantity;
+            var profitPercentage = (profit / initial) * 100;
+
+            showOutput(`Yay!! Your profit is ${profit} and the profit percentage is ${profitPercentage.toFixed(2)}%`);
+        } else {
+            showOutput(`No pain no gain and no gain no pain`);
+
+        }
     }
 }
 
